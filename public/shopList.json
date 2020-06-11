@@ -1,0 +1,55 @@
+{
+	"data": [
+		{
+			"title": "桌子",
+			"titleSrc": "http://localhost:8080/category/desk/title.jpg",
+			"categoryId": 1,
+			"list": [
+				{
+					"id": 1,
+					"src": "http://localhost:8080/category/desk/desk1.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 199
+				},
+				{
+					"id": 2,
+					"src": "http://localhost:8080/category/desk/desk2.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 86
+				},
+				{
+					"id": 3,
+					"src": "http://localhost:8080/category/desk/desk3.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 468
+				}
+			]
+		},
+
+		{
+			"title": "椅子",
+			"titleSrc": "http://localhost:8080/category/desk/title.jpg",
+			"categoryId": 2,
+			"list": [
+				{
+					"id": 4,
+					"src": "http://localhost:8080/category/desk/desk4.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 78
+				},
+				{
+					"id": 5,
+					"src": "http://localhost:8080/category/desk/desk5.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 62
+				},
+				{
+					"id": 6,
+					"src": "http://localhost:8080/category/desk/desk6.jpg",
+					"intro": "普通非常高大上的你买不起的很贵的很吊的桌子",
+					"price": 789
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"list": [
+		{
+			"id": 1,
+			"src": "http://localhost:8080/home_slider/slider1.jpg"
+		},
+		{
+			"id": 2,
+			"src": "http://localhost:8080/home_slider/slider2.jpg"
+		},
+		{
+			"id": 3,
+			"src": "http://localhost:8080/home_slider/slider3.jpg"
+		}
+	]
+}
