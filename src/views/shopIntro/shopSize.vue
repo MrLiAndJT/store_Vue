@@ -87,20 +87,63 @@
 				// console.log(value)
 			},
 			addShopCar: function () {
+
+				// 判断是否登录，还没登录则跳转到1登录页面
+				let isLogin = window.localStorage.getItem('isLogin');
+				if(isLogin == 'false') {
+					this.$message({
+						message: '请先登录',
+						type: 'warning',
+						center: true
+					});
+					return this.$router.replace('/login');
+				}
+				
+
 				let flag = this.existShopCar();		// 判断是否已经存在购物车中
 				if(flag) {
 					return;
 				}
 				
 				let obj = {};
-				obj.id = this.shopId;
-				obj.img = this.src;
-				obj.count = this.num;
-				obj.size = this.size[this.index].title;
-				obj.title = this.title;						// 商品名字 (父组件传过来的)
-				obj.price = parseInt(this.size[this.index].price);			// 商品价格
-				obj.totalPrice = obj.price * obj.count;		// 总价 (选了2个或以上商品时..)
-				obj.selected = true;						//(购物车中)是否选择此商品 (添加到购物车时默认选中)
+				obj.product_id = this.shopId;							// 商品的id
+				obj.img = this.src;								// 选择商品的预览图
+				obj.count = this.num;							// 选择的数量
+				//obj.size = this.size[this.index].title;			//选中商品的规格
+				obj.product_sku_title = this.size[this.index].title;			//选中商品的规格
+				obj.product_title = this.title;							// 商品名字 (父组件传过来的)
+				obj.price = parseFloat(this.size[this.index].price).toFixed(2);			// 商品价格
+				obj.totalPrice = obj.price * obj.count;			// 总价 (选了2个或以上商品时..)
+				obj.product_sku_id = this.size[this.index].id;	
+				obj.selected = true;							//(购物车中)是否选择此商品 (添加到购物车时默认选中)
+
+				let serviceData = {
+					product_sku_id: this.size[this.index].id,
+					product_id: this.shopId,
+					product_title: this.title,
+					count: this.num,
+					price: parseFloat(this.size[this.index].price).toFixed(2)
+				}
+
+				// this.axios.post('http://www.phpillusion.xyz/api/shop/add_cart', serviceData, {
+				// 	headers: {
+				// 		Authorization: this.$store.state.userToken
+				// 	}
+				// }).then((data) => {
+					
+				// 	//添加到购物车的商品信息保存到 Vue的数据管理中
+				// 	this.$store.commit('addShopCar', obj);
+
+				// 	this.$message({
+				// 		message: '购物车添加成功',
+				// 		type: 'success',
+				// 		center: true
+				// 	});
+				// 	this.hidden();
+				// 	console.log('添加成功');
+				// }).catch((data) => {
+				// 	console.log('添加失败,', data)
+				// })
 
 				//添加到购物车的商品信息保存到 Vue的数据管理中
 				this.$store.commit('addShopCar', obj);
@@ -111,8 +154,6 @@
 					center: true
 				});
 				this.hidden();
-
-
 			},
 			existShopCar () {
 				// 判断此商品是否已经存在购物车里
@@ -133,9 +174,9 @@
 					return true;
 				}
 				return false;
-			}
+			},
 		},
-		props: ['shopId', 'size', 'title'],
+		props: ['shopId', 'size', 'title', 'product_sku_id'],
 		directives: {
 			initSize: {
 				// 自定义指令，进来的时候自动触发选中第一个商品规格

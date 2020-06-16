@@ -22,6 +22,13 @@
 			}
 		},
 		created () {
+			
+		},
+		methods: {
+
+		},
+		activated () {
+			// 因为 router-view 使用了 keep-alive, 所以不在create 函数里面执行此代码
 			let len = this.$store.state.shopCarList.shopCarList.length;
 			if(len == 0) {
 				return this.hasProducts = false;

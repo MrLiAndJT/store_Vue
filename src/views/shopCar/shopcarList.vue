@@ -14,11 +14,12 @@
 					</div>
 					<div class="con-r">
 						<figure>
-						<img :src="item.img" :alt="item.title">
+							<!-- 因为后端还没设置返回图片，所以先用静态图片代替占位 -->
+							<img src="http://cdn.xuansiwei.com/d0918dcs/1581302728816/index_news.jpg?x-oss-process=style/small" :alt="item.title">	
 						</figure>
 						<div class="intro-box">
-							<div class="title">{{item.title}}</div>
-							<div class="intro">{{item.size}}</div>
+							<div class="title">{{item.product_title}}</div>
+							<div class="intro">{{item.product_sku_title}}</div>
 							<div class="price">￥{{item.price}}</div>
 						</div>
 						<div class="count-box">
@@ -38,7 +39,7 @@
 					<span>全选</span>
 				</div>
 				<div class="count">
-					合计：￥{{totalPrice}}
+					合计：￥{{transitionTotalPrice}}
 				</div>
 
 			</div>
@@ -56,13 +57,12 @@
 				flag: true,
 				beginX: 0,
 				endX: 0,
-				shopList: [],
+				renderShopList: [],
 				totalPrice: 0,	//选中的商品总价
-				isSelectAll: true,	// 是否选择全部商品
 			}
 		},
 		created () {
-			this.shopList = this.$store.state.shopCarList.shopCarList;
+			this.renderShopList = this.$store.state.shopCarList.shopCarList;
 			this.calcPrict();
 		},
 		methods: {
@@ -79,87 +79,44 @@
 				}
 			},
 			del (e, i) {
-				// console.log('删除此商品');
-				this.shopList.splice(i, 1);
-				this.calcPrict();
+				this.$store.commit('del', i);
 			},
 			minus (e, i) {
-				//减少数量
-				if (this.shopList[i].count == 1) {
-					//当数量为1的时候，点击无效
-					return;
-				}
-				this.shopList[i].count--;
-				this.shopList[i].totalPrice -= this.shopList[i].price;
-				this.calcPrict();
+				this.$store.commit('minus', i);
 			},
 			add (e, i) {
-				//增加数量
-				this.shopList[i].count++;
-				this.shopList[i].totalPrice += this.shopList[i].price;
-				this.calcPrict();
+				this.$store.commit('add', i);
 			},
 			select (e, i) {
-				this.shopList[i].selected = !this.shopList[i].selected;
-				this.calcPrict();
-				this.isSelectAllMethods();
+				this.$store.commit('select', i);
 			},
 			calcPrict () {
-				//计算
-				this.totalPrice = 0;
-				this.shopList.forEach((ele, index) => {
-					if(ele.selected) {
-						this.totalPrice += ele.totalPrice
-					} 
-				});
+				this.$store.commit('calcPrict');
 			},
 			allOrCancel () {
-				// 全选或者取消全选
-				if(this.isSelectAll) {
-					// 如果是全选状态，就执行取消全选
-					this.cancelSelectAll();
-				}else {
-					// 如果不是全选状态，就执行全选
-					this.selectAll();
-				}
+				this.$store.commit('allOrCancel');
 			},
 			selectAll () {
-				// 全选
-				this.shopList.forEach((ele, index) => {
-					ele.selected = true;
-				});
-				this.calcPrict();
-				this.isSelectAllMethods();
+				this.$store.commit('selectAll');
 			},
 			isSelectAllMethods () {
-				let flag = true;
-				this.shopList.forEach((ele, index) => {
-					if(!ele.selected) {
-						// 如果有一项是没有选中的，就是没有全选
-						flag = false;
-					}
-				});
-
-				if(flag) {
-					// 如果循环结束，发现所有选择都是选中的，则把全选状态更改为true
-					this.isSelectAll = true;
-				}else {
-					this.isSelectAll = false;
-				}
+				this.$store.commit('isSelectAllMethods');
 			},
 			cancelSelectAll () {
-				// 取消全选 (全都不选)
-				if(!this.isSelectAll) {
-					// 只有在全选状态下才会执行
-					return;
-				}
-				this.shopList.forEach((ele, index) => {
-					ele.selected = false;
-				});
-				this.calcPrict();
-				this.isSelectAllMethods();
+				this.$store.commit('cancelSelectAll');
 			}
-
+		},
+		computed: {
+			transitionTotalPrice () {
+				// 转换后(保留两位小数)的总价
+				return this.$store.getters.transitionTotalPrice;
+			},
+			shopList () {
+				return this.renderShopList = this.$store.state.shopCarList.shopCarList;
+			},
+			isSelectAll () {
+				return this.$store.state.shopCarList.isSelectAll;
+			}
 		}
 	}
 </script>

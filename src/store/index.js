@@ -15,15 +15,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		loginToken: null,			// 用户登录后，会有一个 唯一的 token，后面用户请求的数据都是通过token来验证某一个人的
+		userToken: undefined,			// 用户登录后，会有一个 唯一的 token，后面用户请求的数据都是通过token来验证某一个人的
+		loginFlag: false,
 	},
 	mutations: {
-		saveLoginToken (state, date) {
-			// console.log('state:', state)
-			// console.log('state.loginToken初始值为: ', state.loginToken);
-			state.loginToken = date;
-			// console.log('state.loginToken修改成功');
-			// console.log('state.loginToken修改后的值为: ', state.loginToken);
+		saveUserToken (state, date) {
+			state.userToken = date;
+			state.loginFlag = true;
 		}
 	},
 	getters: {

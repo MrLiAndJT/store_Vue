@@ -40,7 +40,7 @@
 					{
 						icon: 'fa fa-cog',
 						content: '设置',
-						to: ''
+						to: '/setting'
 					}
 				]
 			}

@@ -11,7 +11,8 @@ const ShopIntro = () => import('views/shopIntro/shopIntro.vue');
 const Login = () => import('components/login/login.vue');
 const register = () => import('components/register/register.vue');
 const user = () => import('views/user/user.vue');
-
+const setting = () => import('views/profile/setting/setting.vue');
+const order = () => import('views/profile/order/order.vue');
 
 const routes = [
 	{
@@ -33,7 +34,7 @@ const routes = [
         component: ShopCar,
         name: 'shopCar',
         meta: {
-            isLogin: false
+            isLogin: true
         }
     },
     {
@@ -60,9 +61,17 @@ const routes = [
         path: '/user',
         component: user,
         name: 'user',
-        meta: {
-            isLogin: true
-        }
+    },
+    {
+        path: '/setting',
+        component: setting,
+        name: 'setting'
+    },
+    {
+        path: '/order/:index',
+        component: order,
+        name: order,
+        props: true
     }
 ]
 
@@ -75,7 +84,8 @@ router.beforeEach((to, from, next) => {
     // to => 将要去哪个路由
     // from => 从哪个路由来的
     // next => 路由放行
-    if(to.meta.isLogin) {
+    let token = window.localStorage.getItem('isLogin');     // 判断是否已经登录
+    if(token == "false" && to.meta.isLogin) {
         // 如果是要去需要登录权限的页面，则跳转到登录页面
         return next('/login')
     }

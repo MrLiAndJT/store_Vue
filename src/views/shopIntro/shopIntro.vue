@@ -10,7 +10,10 @@
 		<shop-intro :allData="allData"></shop-intro>
 
 		<!-- 商品规格 -->
-		<shop-size ref="showSelect" :shopId="$route.query.id" :size="size" :title="title"></shop-size>
+		<shop-size ref="showSelect" 
+		:shopId="$route.query.id" 
+		:size="size" 
+		:title="title"></shop-size>
 
 		<!-- 商品详情 -->
 		<shop-info :detail="detail"></shop-info>
@@ -62,6 +65,7 @@
 					this.detail = d.detail;			// 商品详情介绍
 					this.allData = d;				// 商品的所有数据
 					this.size = d['product_skus'];	//商品规格数据
+					this.product_sku_id = d['product_sku_id'];		//商品sku_id, 不是sku_no
 					this.title = d.title;			// 商品名字
 				});
 		},

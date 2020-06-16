@@ -1,6 +1,9 @@
 <template>
 	<div :style="showFooter ? 'margin-bottom: 1rem;' : 'margin-bottom: 0;' ">
-		<router-view></router-view>
+		<keep-alive>
+			<router-view></router-view>
+		</keep-alive>
+		<!-- <router-view></router-view> -->
 		<tab-bar :showFooter="showFooter">
 			<tabbar-item v-for="(item, index) in tabbarList" 
 			:key="index" 
@@ -48,7 +51,9 @@
 			tabBar,
 			tabbarItem
 		},
-		created () {			
+		created () {	
+			window.localStorage.setItem('isLogin', false);
+			console.log('App.vue中临时设置每次刷新都是退出登录状态')		
 		},
 		mounted () {
 			//根据视口大小设置根字体大小(适配不同的移动端)

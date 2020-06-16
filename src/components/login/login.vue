@@ -60,12 +60,17 @@
 					password: this.password
 				}
 
-				this.axios.post('http://www.phpillusion.xyz/api/auth/login', obj)
+				// http://www.phpillusion.xyz/api/auth/login
+				this.axios.post('http://www.phpillusion.xyz/api/login', obj)
 					.then((data) => {
 						if(data.data.message == '登陆成功') {
 							// 登陆成功
 							let token = data.data.data.token;		// 用户的token码，唯一的
-							this.$store.commit('saveLoginToken', token);
+							this.$store.commit('saveUserToken', token);
+							window.localStorage.setItem('isLogin', true);
+
+							// 获取购物车的数据: 登录成功，把购物车的数据从数据库中取出
+							this.$store.dispatch('getShopCarList');
 
 							this.$message({
 								message: '登陆成功',
@@ -73,7 +78,6 @@
 								center: true,
 								duration: 1000
 							});
-							console.log('login页面: ', this.$store.state.loginToken)
 							this.$router.go(-1);	// 登录成功，返回上一级页面
 						}
 					})
@@ -94,7 +98,7 @@
 					type: 'warning',
 					center: true
 				});
-			}
+			},
 		},
 		mounted () {
 			

@@ -64,7 +64,6 @@
 				this.axios.get(`http://www.phpillusion.xyz/api/store/products/list?id=${this.categoryId}`)
 					.then((data) => {
 						this.contentList = data.data.data.data;
-						console.log(this.contentList)
 					});
 				
 			},

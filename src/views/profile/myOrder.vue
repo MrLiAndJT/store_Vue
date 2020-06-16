@@ -1,6 +1,6 @@
 <template>
 	<div class="section">
-		<router-link to="" tag="div" class="order">
+		<router-link to="/order/0" tag="div" class="order">
 			<div class="content-l">
 				<div class="line"></div>
 				<span>我的订单</span>
@@ -11,15 +11,15 @@
 			</div>
 		</router-link>
 		<div class="category">
-			<router-link to="" tag="div" class="item">
-				<i class="el-icon-truck"></i>
-				<div class="category_name">代收货</div>
+			<router-link to="/order/1" tag="div" class="item">
+				<i class="fa fa-credit-card"></i>
+				<div class="category_name">代付款</div>
 			</router-link>
-			<router-link to="" tag="div" class="item">
-				<i class="el-icon-truck"></i>
-				<div class="category_name">代收货</div>
+			<router-link to="/order/2" tag="div" class="item">
+				<i class="fa fa-plane"></i>
+				<div class="category_name">代发货</div>
 			</router-link>
-			<router-link to="" tag="div" class="item">
+			<router-link to="/order/3" tag="div" class="item">
 				<i class="el-icon-truck"></i>
 				<div class="category_name">代收货</div>
 			</router-link>
