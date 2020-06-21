@@ -12,7 +12,7 @@
 
 <script>
 	//搜索栏
-	import homeSearch from 'views/home/search/home_search.vue';
+	import homeSearch from 'views/home/home_search/home_search.vue';
 
 	//内容栏
 	import categoryContent from 'views/category/category_content.vue';

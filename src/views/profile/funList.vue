@@ -25,7 +25,7 @@
 					{
 						icon: 'fa fa-map-marker',
 						content: '地址管理',
-						to: ''
+						to: '/address'
 					},
 					{
 						icon: 'fa fa-shopping-cart',

@@ -13,6 +13,8 @@ const register = () => import('components/register/register.vue');
 const user = () => import('views/user/user.vue');
 const setting = () => import('views/profile/setting/setting.vue');
 const order = () => import('views/profile/order/order.vue');
+const search = () => import('components/search/search.vue');
+const address = () => import('views/profile/address/address.vue');
 
 const routes = [
 	{
@@ -23,6 +25,11 @@ const routes = [
     	path: '/index',
     	component: Home,
     	name: 'home'
+    },
+    {
+        path: '/search',
+        component: search,
+        name: 'search'
     },
     {
         path: '/category',
@@ -70,8 +77,16 @@ const routes = [
     {
         path: '/order/:index',
         component: order,
-        name: order,
+        name: 'order',
         props: true
+    },
+    {
+        path: '/address',
+        component: address,
+        name: 'address',
+        meta: {
+            isLogin: true
+        }
     }
 ]
 

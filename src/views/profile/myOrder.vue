@@ -13,15 +13,15 @@
 		<div class="category">
 			<router-link to="/order/1" tag="div" class="item">
 				<i class="fa fa-credit-card"></i>
-				<div class="category_name">代付款</div>
+				<div class="category_name">待付款</div>
 			</router-link>
 			<router-link to="/order/2" tag="div" class="item">
 				<i class="fa fa-plane"></i>
-				<div class="category_name">代发货</div>
+				<div class="category_name">待发货</div>
 			</router-link>
 			<router-link to="/order/3" tag="div" class="item">
 				<i class="el-icon-truck"></i>
-				<div class="category_name">代收货</div>
+				<div class="category_name">待收货</div>
 			</router-link>
 		</div>
 	</div>

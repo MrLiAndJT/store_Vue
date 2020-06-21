@@ -1,6 +1,6 @@
 <template>
 	<div :style="showFooter ? 'margin-bottom: 1rem;' : 'margin-bottom: 0;' ">
-		<keep-alive>
+		<keep-alive exclude="shopDetail">
 			<router-view></router-view>
 		</keep-alive>
 		<!-- <router-view></router-view> -->
@@ -19,6 +19,7 @@
 	import resetRootSize from '@/assets/js/reset_fontSize.js';
 	import tabBar from '@/components/tabbar/tabbar_container.vue';
 	import tabbarItem from '@/components/tabbar/tabbar_item.vue';
+
 	export default {
 		data () {
 			return {

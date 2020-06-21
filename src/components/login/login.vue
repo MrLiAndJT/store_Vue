@@ -14,6 +14,7 @@
 				placeholder="请输入手机号"
 				maxLength="11"
 				v-model="phone"
+				autocomplete="on"
 			>
 			</el-input>
 			
@@ -59,7 +60,6 @@
 					phone: this.phone,
 					password: this.password
 				}
-
 				// http://www.phpillusion.xyz/api/auth/login
 				this.axios.post('http://www.phpillusion.xyz/api/login', obj)
 					.then((data) => {

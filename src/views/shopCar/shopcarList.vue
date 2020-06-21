@@ -2,10 +2,10 @@
 	<div>
 		<transition-group class="list" tag="ul" name="list">
 			<li 
-			v-for="(item, index) in shopList" :key="item.id + item.size"
+			v-for="(item, index) in shopList" :key="item.id + item.product_sku_title"
 			@touchstart="begin($event, index)" 
 			@touchend="end($event, index)" 
-			:class="item.showDel ? 'showDel' : '' "		
+			:class="item.showDel ? 'showDel' : '' "	
 			>
 				<div class="content">
 					<div class="con-l" @click="select($event, index)">
@@ -29,7 +29,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="del" @click="del($event, index)">删除</div>
+				<div class="del" @click="del($event, index)" :myKey="item.id + item.product_sku_title">删除</div>
 			</li>
 		</transition-group>
 		<div class="sum-container">
@@ -79,7 +79,7 @@
 				}
 			},
 			del (e, i) {
-				this.$store.commit('del', i);
+				this.$store.dispatch('del', i);
 			},
 			minus (e, i) {
 				this.$store.commit('minus', i);

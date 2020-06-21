@@ -20,6 +20,7 @@ const shopCarList = {
 		},
 		addShopCar (state, data) {
 			state.shopCarList.unshift(data);
+			this.commit('calcPrict');
 		},
 		clearShopCar(state, data) {
 			// 清空购物车
@@ -28,7 +29,6 @@ const shopCarList = {
 		calcPrict (state) {
 			// 计算价格
 			state.totalPrice = 0;
-			console.log('state.shopCarList: ', state.shopCarList)
 				state.shopCarList.forEach((ele, index) => {
 					if(ele.selected) {
 						state.totalPrice = parseFloat(state.totalPrice);		// 刚刚加的
@@ -125,6 +125,19 @@ const shopCarList = {
 						}
 					});
 		},
+		del (context, i) {
+			let delArr = [];	
+			delArr.push(context.state.shopCarList[i].id);	// 取出id
+			axios.post('http://www.phpillusion.xyz/api/shop/del_cart', {
+				ids: delArr,
+			}, {
+				headers: {
+					Authorization: context.rootState.userToken,
+				}
+			}).then (() => {
+				context.commit('del', i);
+			});
+		}
 		
 	},
 	getters: {

@@ -20,7 +20,7 @@
 <script>
 	import navBar from '@/components/navbar/navbar.vue';
 	import mySwiper from '@/components/swiper/swiper.vue';
-	import homeSearch from 'views/home/search/home_search.vue';
+	import homeSearch from 'views/home/home_search/home_search.vue';
 	import homeSort from 'views/home/sort/home_sort.vue';
 	import homeShoplist from 'views/home/shopList/home_shoplist.vue';
 	export default {

@@ -119,48 +119,51 @@
 
 				let serviceData = {
 					product_sku_id: this.size[this.index].id,
+					product_sku_title: this.size[this.index].title,
 					product_id: this.shopId,
 					product_title: this.title,
 					count: this.num,
 					price: parseFloat(this.size[this.index].price).toFixed(2)
 				}
 
-				// this.axios.post('http://www.phpillusion.xyz/api/shop/add_cart', serviceData, {
-				// 	headers: {
-				// 		Authorization: this.$store.state.userToken
-				// 	}
-				// }).then((data) => {
+				this.axios.post('http://www.phpillusion.xyz/api/shop/add_cart', serviceData, {
+					headers: {
+						Authorization: this.$store.state.userToken
+					}
+				}).then((data) => {
 					
-				// 	//添加到购物车的商品信息保存到 Vue的数据管理中
-				// 	this.$store.commit('addShopCar', obj);
+					//添加到购物车的商品信息保存到 Vue的数据管理中
+					this.$store.commit('addShopCar', obj);
+					// this.$store.commit('addShopCar', serviceData);
 
-				// 	this.$message({
-				// 		message: '购物车添加成功',
-				// 		type: 'success',
-				// 		center: true
-				// 	});
-				// 	this.hidden();
-				// 	console.log('添加成功');
-				// }).catch((data) => {
-				// 	console.log('添加失败,', data)
-				// })
+					this.$message({
+						message: '购物车添加成功',
+						type: 'success',
+						center: true
+					});
+					this.hidden();
+					// console.log('添加成功');
+				}).catch((data) => {
+					console.log('添加失败,', data)
+				})
 
-				//添加到购物车的商品信息保存到 Vue的数据管理中
-				this.$store.commit('addShopCar', obj);
+				// //添加到购物车的商品信息保存到 Vue的数据管理中
+				// this.$store.commit('addShopCar', obj);
 
-				this.$message({
-					message: '购物车添加成功',
-					type: 'success',
-					center: true
-				});
-				this.hidden();
+				// this.$message({
+				// 	message: '购物车添加成功',
+				// 	type: 'success',
+				// 	center: true
+				// });
+				// this.hidden();
 			},
 			existShopCar () {
 				// 判断此商品是否已经存在购物车里
 				let flag = false;
 				let shopCarList = this.$store.state.shopCarList.shopCarList;
 				shopCarList.forEach((ele, index) => {
-					if(ele.id == this.shopId && ele.size == this.size[this.index].title) {
+					console.log('this.size: ', this.size);
+					if(ele.product_id == this.shopId && ele.product_sku_title == this.size[this.index].title) {
 						// 如果商品id已经存在，并且此规格也存在 购物车中，则返回 true
 						this.$message({
 							message: '此商品已存在购物车中',

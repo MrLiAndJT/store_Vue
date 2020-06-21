@@ -34,6 +34,7 @@
 	import shopFooter from 'views/shopIntro/shopFooter.vue';
 
 	export default {
+		name: 'shopDetail',
 		data () {
 			return {
 				swiperList: [],		// 轮播图

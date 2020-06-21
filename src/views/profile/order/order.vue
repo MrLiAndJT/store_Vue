@@ -7,13 +7,13 @@
 			<el-tab-pane label="全部" name="0">
 				<order-null></order-null>
 			</el-tab-pane>
-			<el-tab-pane label="代付款" name="1">
+			<el-tab-pane label="待付款" name="1">
 				<order-null></order-null>
 			</el-tab-pane>
 			<el-tab-pane label="待收货" name="2">
 				<order-null></order-null>
 			</el-tab-pane>
-			<el-tab-pane label="代发货" name="3">
+			<el-tab-pane label="待发货" name="3">
 				<order-null></order-null>
 			</el-tab-pane>
 		</el-tabs>
